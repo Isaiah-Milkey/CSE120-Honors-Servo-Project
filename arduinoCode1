@@ -1,0 +1,33 @@
+#include <Servo.h>
+#define BUTTON_PIN 4
+
+int pos = 0;
+Servo servo_9;
+
+void setup()
+{	
+  servo_9.attach(9);
+  
+  //Button
+  Serial.begin(9600);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+}
+void loop()
+{ //Button
+  //Serial.println(digitalRead(BUTTON_PIN));
+  delay(100);
+  //Serial.println(pos);
+  delay(100);
+  
+  int num = digitalRead(BUTTON_PIN);
+    if (num == 0){
+      	pos += 15;
+      	
+  	}
+  	else if (pos >= 180){
+    	pos = 0;
+      	delay(20);
+  	}
+  delay(15);
+  servo_9.write(pos);
+}
